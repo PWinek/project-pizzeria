@@ -89,6 +89,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
       
 
       console.log('new Product:', thisProduct);
@@ -107,6 +108,25 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
+    initAccordion(){
+      const thisProduct = this;
+
+      const button = thisProduct.element.querySelector(select.menuProduct.clickable);
+      console.log(button);
+      button.addEventListener('click', function(event){
+        event.preventDefault();
+
+        thisProduct.element.classList.add('active');
+
+        const activeProducts = document.querySelectorAll('.active');
+        
+        for (let aProduct of activeProducts){
+          if (aProduct !== thisProduct.element){
+            aProduct.classList.remove('active');
+          }
+        }
+      });
+    }
   }
 
   
